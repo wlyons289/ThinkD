@@ -6,6 +6,7 @@
 //
 
 import XCTest
+
 @testable import ThinkD
 
 final class ThinkDTests: XCTestCase {
@@ -17,20 +18,43 @@ final class ThinkDTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    @MainActor func testBrowseViewModelValid() async throws {
+        
+        let viewModel = BrowseViewModel()
+        
+        do {
+            try await viewModel.fetchProcuts()
+        } catch {
+            XCTFail("Failed to fetch products: \(error)")
+            return
         }
+        XCTAssert(viewModel.products.count > 0)
+
+    }
+    
+    @MainActor func testBrowseViewModelEmpty() async throws {
+        let viewModel = BrowseViewModel()
+        
+        do {
+            try await viewModel.fetchProcutsTestEmpty()
+        } catch {
+        }
+        XCTAssert(viewModel.products.count == 0)
+
+    }
+    
+    @MainActor func testBrowseViewModelMalformed() async throws {
+        let viewModel = BrowseViewModel()
+        
+        do {
+            try await viewModel.fetchProcutsTestMalformed()
+        } catch {
+            
+            XCTAssert(error as? NetworkError == NetworkError.malformedJSON)
+        }
+        XCTAssert(viewModel.products.count == 0)
+
     }
 
 }

@@ -12,7 +12,15 @@ import Foundation
     
     @Published var products = [Product]()
     
-    func fetchProcuts() async throws {        
+    func fetchProcuts() async throws {
         products = try await NetworkService.sharedInstance.requestProducts()
     }
+    
+    func fetchProcutsTestMalformed() async throws {
+        products = try await NetworkService.sharedInstance.requestProducts(endPoint: EndPoints.productsMalformedEndpoint)
+    }
+    func fetchProcutsTestEmpty() async throws {
+        products = try await NetworkService.sharedInstance.requestProducts(endPoint: EndPoints.productsEmptyEndpoint)
+    }
+
 }

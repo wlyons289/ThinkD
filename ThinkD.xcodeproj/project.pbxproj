@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E4CB62EA2D7905FA00977CE6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E4CB62E92D7905FA00977CE6 /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		E4CB62BB2D77C7C200977CE6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4CB62EA2D7905FA00977CE6 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = ThinkD;
 			packageProductDependencies = (
+				E4CB62E92D7905FA00977CE6 /* Kingfisher */,
 			);
 			productName = ThinkD;
 			productReference = E4CB62AA2D77C7C100977CE6 /* ThinkD.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = E4CB62A12D77C7C100977CE6;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E4CB62E82D7905FA00977CE6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E4CB62AB2D77C7C100977CE6 /* Products */;
 			projectDirPath = "";
@@ -558,6 +567,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E4CB62E82D7905FA00977CE6 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E4CB62E92D7905FA00977CE6 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4CB62E82D7905FA00977CE6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E4CB62A22D77C7C100977CE6 /* Project object */;
 }

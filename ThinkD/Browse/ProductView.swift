@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import Kingfisher
 
 struct ProductView: View {
     
@@ -17,14 +17,15 @@ struct ProductView: View {
         VStack(alignment: .leading) {
             HStack(alignment: .top, spacing: 10) {
                 if let imageURL = product.smallImageURL() {
-                    AsyncImage(url: imageURL) { image in
-                        image.resizable()
-                    } placeholder: {
-                        ProgressView()
-                    }
+                    KFImage.url(imageURL)
+                        .placeholder { progress in
+                            Image(systemName: "photo")
+                        }
+                        .frame(width: 300, height: 300, alignment: .center)
                 } else {
                     Image(systemName: "photo")
                         .resizable()
+                        .frame(width: 300, height: 300, alignment: .center)
                 }
             }
 

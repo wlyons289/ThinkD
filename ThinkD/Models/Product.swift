@@ -9,7 +9,11 @@ import Foundation
 
 
 struct Product: Codable, Identifiable {
-    let id = UUID()
+    var id: String {
+        get {
+            return uuid
+        }
+    }
     
     var uuid: String
     var product_name: String

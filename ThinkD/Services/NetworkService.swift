@@ -31,9 +31,9 @@ class NetworkService {
         case malformedJSON
     }
     
-    func requestProducts() async throws -> [Product] {
+    func requestProducts(endPoint: String? = EndPoints.procuctsEndpoint) async throws -> [Product] {
         
-        guard let url = URL(string: EndPoints.procuctsEndpoint) else {
+        guard let endPoint = endPoint, let url = URL(string: endPoint) else {
             throw NetworkError.badURL
         }
         

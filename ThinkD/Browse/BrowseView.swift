@@ -10,27 +10,26 @@ import SwiftUI
 struct BrowseView: View {
     
     @StateObject private var viewModel = BrowseViewModel()
-//    @State var loaded = false
+    @State private var showingAlert = false
 
     var body: some View {
         NavigationStack {
             List {
                 ForEach(viewModel.products, id: \.id) { product in
-                    ZStack {
-                        ProductView(product: product)
-                    }
-                    .listRowSeparator(.hidden)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
+                    ProductView(product: product)
                 }
             }
             .listStyle(.plain)
-            .navigationTitle("Browse")
+            .navigationTitle("Products")
             .task {
                 await refreshData()
             }
             .refreshable {
                 await refreshData()
             }
+        }
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text("Network Error"), message: Text("An error occured while retreiving data. Please try again later."), dismissButton: .default(Text("OK")))
         }
     }
     
@@ -39,7 +38,8 @@ struct BrowseView: View {
             do {
                 try await viewModel.fetchProcuts()
             } catch {
-                print(error.localizedDescription)
+                print(error.localizedDescription)                
+                showingAlert = true
             }
         }
     }
