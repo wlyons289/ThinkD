@@ -39,6 +39,8 @@ struct ProductView: View {
                     .foregroundColor(.secondary)
                 Text("Hazard Rating: \(product.hazard_rating)")
                     .foregroundColor(.secondary)
+                Text("Hazard Catrgory: \(product.hazard_rating_category)")
+                    .foregroundColor(.secondary)
                 Text(product.description ?? "NA")
                     .foregroundColor(.secondary)
             }

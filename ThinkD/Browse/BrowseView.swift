@@ -27,6 +27,14 @@ struct BrowseView: View {
             .refreshable {
                 await refreshData()
             }
+            .overlay {
+                if viewModel.products.isEmpty {
+                    ContentUnavailableView {
+                        Label("No Results", systemImage: "doc.richtext.fill")
+                    } description: {
+                        Text("No Products Available.")
+                    }                }
+            }
         }
         .alert(isPresented: $showingAlert) {
             Alert(title: Text("Network Error"), message: Text("An error occured while retreiving data. Please try again later."), dismissButton: .default(Text("OK")))
