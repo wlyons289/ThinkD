@@ -14,13 +14,15 @@ struct ProductView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading) {
-            HStack(alignment: .top, spacing: 10) {
+        VStack() {
+            HStack() {
                 if let imageURL = product.smallImageURL() {
                     KFImage.url(imageURL)
                         .placeholder { progress in
                             Image(systemName: "photo")
                         }
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
                         .frame(width: 300, height: 300, alignment: .center)
                 } else {
                     Image(systemName: "photo")
